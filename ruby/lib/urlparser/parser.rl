@@ -20,14 +20,14 @@ module UrlParser
           action begin_password { the_password_start = p }
           action password       { parts[:password] = data[the_password_start ... p].pack("C*") }
 
-          action begin_host     { the_host_start = p; p "begin host: #{p}" }
-          action host           { parts[:host] = data[the_host_start ... p].pack("C*"); p "end host: #{p}" }
+          action begin_host     { the_host_start = p }
+          action host           { parts[:host] = data[the_host_start ... p].pack("C*") }
 
-          action begin_port     { the_port_start = p; p "begin port: #{p}" }
-          action port           { parts[:port] = data[the_port_start ... p].pack("C*").to_i; "end port: #{p}" }
+          action begin_port     { the_port_start = p }
+          action port           { parts[:port] = data[the_port_start ... p].pack("C*").to_i }
 
-          action begin_path     { the_path_start = p; p "begin path: #{p}" }
-          action path           { parts[:path] = data[the_path_start ... p].pack("C*"); p "end path: #{p}" }
+          action begin_path     { the_path_start = p }
+          action path           { parts[:path] = data[the_path_start ... p].pack("C*") }
 
           include url "url.rl";
 
